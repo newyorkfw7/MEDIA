@@ -1,0 +1,426 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #000;
+    font-family: 'Outfit', sans-serif;
+    padding: 0px; /* Espacio alrededor del contenido */
+    box-sizing: border-box; /* Incluye padding en el tamaño total del elemento */
+}
+
+.models-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    color: #000000;
+    background: hsl(0, 0%, 100%);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+
+/* Estilo para el contenedor de la tabla */
+.media-list-container {
+    overflow-x: auto; /* Permitir desplazamiento horizontal en pantallas pequeñas */
+}
+
+/* Estilo para la tabla */
+.media-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px; /* Espacio adicional para separar de otros elementos */
+}
+
+/* Estilo para las filas de la tabla */
+.media-row {
+    display: flex; /* Usar flexbox para las filas */
+    flex-wrap: wrap; /* Permitir que las celdas se envuelvan en pantallas pequeñas */
+    border-bottom: 1px solid #ddd; /* Borde inferior para separar las filas */
+    padding: 10px 0; /* Espaciado interior */
+}
+
+/* Estilo para las celdas */
+.media-cell {
+    flex: 1 1 100%; /* Flexbox: crecer, encoger, ancho inicial del 100% */
+    padding: 10px; /* Espaciado interior */
+    text-align: left; /* Alineación de texto a la izquierda */
+    word-wrap: break-word; /* Dividir palabras largas en múltiples líneas */
+}
+
+
+.actions-dropdown.show {
+    display: block;
+}
+
+.actions-dropdown div {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.actions-dropdown div:hover {
+    background-color: #f1f1f1;
+}
+
+/* Media query para ajustar la tabla en pantallas pequeñas */
+@media screen and (max-width: 600px) {
+    .media-table {
+        overflow-x: auto; /* Permitir desplazamiento horizontal en pantallas pequeñas */
+    }
+    .media-row {
+        flex-direction: column; /* Cambiar a dirección de columna en pantallas pequeñas */
+    }
+    .media-cell {
+        flex: 1 1 100%; /* Mantener ancho completo en pantallas pequeñas */
+    }
+    .actions-cell {
+        flex: 1 1 100%; /* Mantener ancho completo en la celda de acciones */
+    }
+}
+
+/* Estilo para el modal */
+.modal {
+    display: none; /* Ocultar el modal por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Habilitar desplazamiento si el contenido es más largo que la pantalla */
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro semi-transparente */
+  }
+  
+  /* Estilo para el contenido del modal */
+  .modal-content {
+    background-color: #fefefe; /* Fondo blanco */
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del contenido */
+    max-width: 600px; /* Máximo ancho del contenido */
+    position: relative;
+    text-align: center; /* Alinear el contenido al centro */
+  }
+  
+  /* Estilo para la imagen dentro del modal */
+  #modalImg {
+    max-width: 100%; /* Ajustar la imagen al ancho del contenedor */
+    height: auto;
+  }
+  
+  /* Estilo para el botón de cerrar */
+  .close {
+    color: hsl(0, 100%, 50%); /* Color del texto */
+    position: absolute;
+    top: 10px; /* Distancia desde la parte superior */
+    right: 20px; /* Distancia desde la derecha */
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #aaaaaa;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  @media screen and (max-width: 600px) {
+    /* Estilos para dispositivos móviles */
+    .modal-content {
+      width: 90%; /* Reducir el ancho del contenido */
+      padding: 10px; /* Ajustar el padding */
+    }
+  
+    .close {
+      top: 5px; /* Ajustar la posición del botón de cerrar */
+      right: 10px;
+    }
+  }
+  
+
+
+  .sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    color: white;
+    transition: width 0.3s;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.closed {
+    width: 60px;
+}
+
+.sidebar-header {
+    padding: 10px;
+    text-align: center;
+}
+
+.sidebar-logo {
+    width: 100%;
+    height: auto;
+    margin: 20px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu .menu-item {
+    display: block;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sidebar-menu .menu-item:hover {
+    background-color: #ffffff;
+    color: #000;
+}
+
+.sidebar-menu .exit {
+    margin-top: auto;
+    border-top: 1px solid #444;
+}
+
+.toggle-btn {
+    position: absolute;
+    top: 10px;
+    right: -50px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.sidebar.closed + .main-content {
+    margin-left: 60px;
+}
+.sidebar-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-right {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-btn {
+    background-color: #ff8c00; /* Color naranja */
+    color: white;
+    border: none;
+    padding: 8px 16px; /* Ajustar el padding para reducir el tamaño */
+    font-size: 14px; /* Ajustar el tamaño de la fuente */
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.3s, background-color 0s; /* Añadido transición para el color de fondo en hover */
+}
+
+.navbar-btn:hover {
+    transform: scale(1.05); /* Agrandar un poco al pasar el mouse */
+    background-color: #ff8c00; /* Mantener el mismo color en hover */
+}
+
+.navbar-link {
+    background-color: #000000;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: right;
+    text-decoration: none;
+    font-size: 14px; /* Ajustar el tamaño de la fuente */
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.navbar-link:hover {
+    transform: scale(1.05); /* Agrandar un poco al pasar el mouse */
+}
+
+
+
+.media-details-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.data-container {
+    margin-top: 20px;
+}
+
+.participation-number {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.qr-code-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.qr-img {
+    width: 150px; /* Ajusta el tamaño según sea necesario */
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.register-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.register-button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+  .media-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px; /* Reduce el margen superior de la tabla */
+}
+
+.media-table th,
+.media-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.media-table th {
+    background-color: #f2f2f2;
+}
+
+.media-table img {
+    width: 50px; /* Ajusta el tamaño del QR Code según necesites */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.register-status-no {
+    background-color: red;
+    color: white;
+  }
+  .register-status-yes {
+    background-color: green;
+    color: white;
+  }
+  
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.model {
+    border: 1px solid #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.model img {
+    max-width: 50%;
+    border-radius: 0;
+    
+    
+}
+
+.qr-container {
+
+    margin-top: 10px;
+    text-align: center;
+}
+  
+.qr-container img {
+    
+    width: 150px; /* Ajusta el tamaño según sea necesario */
+    height: 150px;
+}
+

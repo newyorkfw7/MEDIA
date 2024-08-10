@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Media</title>
+    <link rel="stylesheet" href="media.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <img src="https://runway7fashion.com/wp-content/uploads/2023/12/RUNWAY-7-updated-logo-1.png" alt="Logo" class="sidebar-logo">
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="/register.html" class="menu-item">Register</a></li>
+            <li><a href="/media.html" class="menu-item">Participants</a></li>
+            <li><a href="/scanner.html" class="menu-item">Scanner QR</a></li>
+            <li><a href="#" class="menu-item exit">Exit</a></li>
+        </ul>
+        <button id="toggleSidebar" class="toggle-btn">☰</button>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content">
+        <div id="mediaList" class="media-list-container">
+            <h1>Registered photographers and videographers</h1>
+            <div id="mediaList"></div>
+        </div>
+
+        <!-- Contenedor para el modal de QR -->
+        <div id="qrModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span> <!-- Botón para cerrar el modal -->
+                <img id="modalImg" src="" alt="QR Code">
+            </div>
+        </div>
+    </div>
+
+    <script src="media.js"></script>
+</body>
+</html>

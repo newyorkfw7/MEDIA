@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Media</title>
+    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="media.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <img src="https://runway7fashion.com/wp-content/uploads/2023/12/RUNWAY-7-updated-logo-1.png" alt="Logo" class="sidebar-logo">
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="/register.html" class="menu-item">Register</a></li>
+            <li><a href="/media.html" class="menu-item">Participants</a></li>
+            <li><a href="/scanner.html" class="menu-item">Scanner QR</a></li>
+            <li><a href="#" class="menu-item exit">Exit</a></li>
+        </ul>
+
+    </div>
+
+    <h1 class="main-title">VIDEOGRAPHERS & PHOTOGRAPHERS INQUIRY</h1>
+    <p class="sub-title">September 4th- 8th</p>
+    <p class="instruction">Please complete the form below</p>
+    <div class="form-box">
+        <form id="registerForm" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="user-box">
+                    <input type="text" id="fullName" name="fullName" required>
+                    <label for="fullName">Full Name:</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="user-box">
+                    <input type="email" name="emailAddress" required>
+                    <label for="emailAddress">Email:</label>
+                </div>
+                <div class="user-box">
+                    <input type="tel" name="phoneNumber" required>
+                    <label for="phoneNumber">Phone:</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="user-box">
+                    <select name="type" required>
+                        <option value="Photographer">PHOTOGRAPHERS</option>
+                        <option value="Videographer">VIDEOGRAPHERS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="user-box">
+                    <input type="text" name="instagramUsername" required>
+                    <label for="instagramUsername">Instagram Username:</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="user-box">
+                    <select id="day" name="day" required>
+                        <option value="" disabled selected>Select Day</option>
+                        <option value="3TH">3TH</option>
+                        <option value="4TH">4TH</option>
+                        <option value="5TH">5TH</option>
+                        <option value="6TH">6TH</option>
+                        <option value="7TH">7TH</option>
+                        <option value="8TH">8TH</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="user-box">
+                    <select id="time" name="time" required>
+                        <option value="" disabled selected>Select Time</option>
+                        <option value="11am">11am</option>
+                        <option value="1pm">1pm</option>
+                        <option value="3pm">3pm</option>
+                        <option value="5pm">5pm</option>
+                        <option value="7pm">7pm</option>
+                        <option value="9pm">9pm</option>
+                    </select>
+                </div>
+            </div>
+            <button class="bu" type="submit">Register</button>
+        </form>
+    </div>
+    <script src="register.js"></script>
+</body>
+</html>

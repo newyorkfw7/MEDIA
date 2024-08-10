@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Media</title>
+    <style>
+        /* Estilos opcionales para el formulario */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], select {
+            width: calc(100% - 12px);
+            padding: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Edit Media</h2>
+    <form id="editMediaForm">
+        <input type="hidden" id="mediaId" name="mediaId">
+        
+        <label for="fullName">Name:</label>
+        <input type="text" id="fullName" name="fullName" required>
+        
+        <label for="emailAddress">Email:</label>
+        <input type="email" id="emailAddress" name="emailAddress" required>
+        
+        <label for="phoneNumber">Phone:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required>
+        
+        <label for="type">Type:</label>
+        <select id="type" name="type" required>
+            <option value="">Select Type</option>
+            <option value="Photographer">PHOTOGRAPHERS</option>
+            <option value="Videographer">VIDEOGRAPHERS</option>
+        </select>
+        
+        <label for="instagramUsername">Instagram:</label>
+        <input type="text" id="instagramUsername" name="instagramUsername">
+        
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" disabled>
+        
+        <input type="submit" value="Save Changes">
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const mediaId = urlParams.get('id');
+
+                if (!mediaId) {
+                    console.error('Media ID not found in URL');
+                    return;
+                }
+
+                const response = await fetch(`/dbmedia/${mediaId}`);
+                const media = await response.json();
+
+                if (!media) {
+                    console.error(`Media with ID ${mediaId} not found`);
+                    return;
+                }
+
+                // Rellenar los campos del formulario con los datos del medio
+                document.getElementById('mediaId').value = media._id;
+                document.getElementById('fullName').value = media.fullName;
+                document.getElementById('emailAddress').value = media.emailAddress;
+                document.getElementById('phoneNumber').value = media.phoneNumber;
+                document.getElementById('type').value = media.type;
+                document.getElementById('instagramUsername').value = media.instagramUsername;
+                document.getElementById('status').value = media.status;
+
+                // Manejar el envío del formulario para guardar cambios
+                const editMediaForm = document.getElementById('editMediaForm');
+                editMediaForm.addEventListener('submit', async function(event) {
+                    event.preventDefault();
+
+                    const formData = new FormData(editMediaForm);
+                    const formObject = {};
+                    formData.forEach((value, key) => {
+                        formObject[key] = value;
+                    });
+
+                    // Eliminar el campo status del objeto formObject para evitar su modificación
+                    delete formObject.status;
+
+                    try {
+                        const updateResponse = await fetch(`/dbmedia/${mediaId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(formObject)
+                        });
+
+                        if (updateResponse.ok) {
+                            console.log(`Media with ID ${mediaId} updated successfully`);
+                            // Redireccionar a la página principal o a la página de detalles del medio
+                            window.location.href = 'http://localhost:5000/media.html';
+                        } else {
+                            console.error('Failed to update media');
+                        }
+                    } catch (error) {
+                        console.error('Error updating media:', error);
+                    }
+                });
+
+            } catch (error) {
+                console.error('Error fetching media data:', error);
+            }
+        });
+    </script>
+</body>
+</html>

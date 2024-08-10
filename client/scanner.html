@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="media.css">
+    <title>QR Scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+
+            margin: 0;
+            padding: 0;
+        }
+        #scanner-container {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+        }
+        #preview {
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+        #start-button, #stop-button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        #start-button {
+            background-color: #4CAF50;
+        }
+        #stop-button {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <img src="https://runway7fashion.com/wp-content/uploads/2023/12/RUNWAY-7-updated-logo-1.png" alt="Logo" class="sidebar-logo">
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="/register.html" class="menu-item">Register</a></li>
+            <li><a href="/media.html" class="menu-item">Participants</a></li>
+            <li><a href="/scanner.html" class="menu-item">Scanner QR</a></li>
+            <li><a href="#" class="menu-item exit">Exit</a></li>
+        </ul>
+        <button id="toggleSidebar" class="toggle-btn">☰</button>
+    </div>
+    <div id="scanner-container">
+        <h1>QR Scanner</h1>
+        <video id="preview" autoplay></video>
+        <div>
+            <button id="start-button">Start Scanning</button>
+            <button id="stop-button" disabled>Stop Scanning</button>
+        </div>
+        <p id="result"></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/instascan@1.0.0/build/instascan.min.js"></script>
+    <script src="scanner.js"></script>
+</body>
+</html>
